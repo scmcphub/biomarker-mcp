@@ -24,7 +24,7 @@ You can use biomarker-mcp in most AI clients, plugins, or agent frameworks that 
 
 A demo showing scRNA-Seq cell cluster analysis in a AI client Cherry Studio using natural language based on biomarker-mcp
 
-
+https://github.com/user-attachments/assets/71268f6f-c74d-4142-ad7a-893b411d748a
 
 
 ## 📚 Documentation
