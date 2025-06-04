@@ -44,8 +44,11 @@ def query_celltype_marker(
         logger.info(f"Filtered by tissue_type: {request.tissue_type}, remaining records: {len(db_df)}")
     
     if request.cancer_type:
+        cancer_types = db_df['cancer_type'].unique()
         db_df = db_df[db_df['cancer_type'].isin(request.cancer_type)]
-        logger.info(f"Filtered by cancer_type: {request.cancer_type}, remaining records: {len(db_df)}")
+        if len(db_df) == 0:
+            return f"404 NOT FOUND ERROR: No records found for cancer_type: {request.cancer_type}, available cancer_types: {cancer_types}"
+    
     
     if request.cell_type:
         db_df = db_df[db_df['cell_type'].isin(request.cell_type)]
