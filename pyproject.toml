@@ -38,3 +38,7 @@ asyncio_mode = "strict"
 asyncio_default_fixture_loop_scope = "function"
 
 
+[project.urls]
+Homepage = "http://scmcphub.org/"
+Repository = "https://github.com/scmcphub/biomarker-mcp"
+Documentation = "https://docs.scmcphub.org/"
