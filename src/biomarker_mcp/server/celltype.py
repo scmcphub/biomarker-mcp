@@ -16,7 +16,7 @@ def query_celltype_marker(request: CellMarkerDB, ctx: Context):
         with pkg_resources.path("biomarker_mcp.data", "Cell_marker_All.csv") as db_file:
             if not os.path.exists(db_file):
                 raise FileNotFoundError(f"Database file not found at {db_file}")
-            db_df: pd.DataFrame = pd.read_csv(db_file)
+            db_df = pd.read_csv(db_file)
     except Exception as e:
         raise ToolError(f"Failed to load database: {str(e)}")
 
