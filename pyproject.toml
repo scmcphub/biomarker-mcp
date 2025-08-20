@@ -27,6 +27,7 @@ dependencies = [
     "fastmcp>=2.3.4",
     "nest_asyncio",
     "scanpy",
+    "typer"
 ]
 
 [dependency-groups]
