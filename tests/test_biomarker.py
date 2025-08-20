@@ -1,20 +1,18 @@
-import asyncio
+import nest_asyncio
 import pytest
 from fastmcp import Client
-import anndata
-from pathlib import Path
 
-import nest_asyncio
 nest_asyncio.apply()
 
 
-@pytest.mark.asyncio 
+@pytest.mark.asyncio
 async def test_query_celltype_marker(mcp):
     """Test listing available CCC methods."""
     async with Client(mcp) as client:
-        result = await client.call_tool("db_query_celltype_marker", {
-            "request":{
-                "species": ["Human"], 
-                "tissue_class": ["Pancreas"]},
-        })
-        assert "Pancreas" in result[0].text
+        result = await client.call_tool(
+            "query_celltype_marker",
+            {
+                "request": {"species": "Homo sapiens", "sample_type": "Tissue"},
+            },
+        )
+        assert "Tissue" in result.content[0].text
