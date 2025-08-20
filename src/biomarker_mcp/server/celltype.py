@@ -11,9 +11,9 @@ from ..schema.celltype import CellMarkerDB, SingleCellBaseParam
 db_mcp = FastMCP("BioMarkerMCP-DB-Server")
 
 
-@db_mcp.tool(enabled=False)
-def query_db_cellmarker(request: CellMarkerDB):
-    """query the celltype marker from cellmarker database"""
+@db_mcp.tool(tags={"celltype"})
+def query_cancer_celltype_marker(request: CellMarkerDB):
+    """query the celltype marker in cancer from cellmarker database"""
     try:
         with pkg_resources.path("biomarker_mcp.data", "Cell_marker_All.csv") as db_file:
             if not os.path.exists(db_file):
@@ -72,14 +72,16 @@ def query_db_cellmarker(request: CellMarkerDB):
     db_df.loc[:, request.show_columns].to_csv(output_path, index=False)
 
     return {
-        "total_records_number": len(result),
-        f"show_{request.show_num}_records": str(result),
-        "full_records_output_file": output_path,
+        "query_parameters": request.model_dump(),
+        "query_result": {
+            f"head_{request.show_num}_records": result.to_dict(),
+            "full_records_output_file": output_path,
+        },
     }
 
 
 @db_mcp.tool(tags={"celltype"})
-def query_celltype_marker(request: SingleCellBaseParam):
+def query_normal_celltype_marker(request: SingleCellBaseParam):
     """query the singlecellbase from singlecellbase database"""
     try:
         with pkg_resources.path(
@@ -135,7 +137,7 @@ def query_celltype_marker(request: SingleCellBaseParam):
 
     # Generate filename with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"cellmarker_query_{timestamp}.csv"
+    filename = f"singlecellbase_query_{timestamp}.csv"
     output_path = os.path.join(output_dir, filename)
 
     # Write results to CSV file
