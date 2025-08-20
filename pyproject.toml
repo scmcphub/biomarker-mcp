@@ -21,7 +21,6 @@ keywords = [
     "AI"
 ]
 
-
 requires-python = ">=3.10"
 dependencies = [
     "mcp>=1.8.0",
@@ -36,7 +35,6 @@ dev = [
     "pytest-asyncio>=0.23.5",
 ]
 
-
 [project.scripts]
 biomarker-mcp = "biomarker_mcp.cli:app"
 
@@ -47,14 +45,10 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/biomarker_mcp/__init__.py"
 
-
 [tool.pytest.ini_options]
 asyncio_mode = "strict"
 asyncio_default_fixture_loop_scope = "function"
 
-
 [project.urls]
-Homepage = "http://scmcphub.org/"
+Homepage = "https://github.com/scmcphub/biomarker-mcp"
 Repository = "https://github.com/scmcphub/biomarker-mcp"
-Documentation = "https://docs.scmcphub.org/"
-
